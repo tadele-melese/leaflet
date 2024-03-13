@@ -14,4 +14,4 @@ Community: With a vibrant community of developers and contributors, Leaflet is c
 For detailed documentation and examples, visit the Leaflet website.
 
 ## License:
-Leaflet is distributed under the BSD-2-Clause License.
+Leaflet is distributed under the [BSD](https://opensource.org/license/bsd-2-clause)-2-Clause License.
