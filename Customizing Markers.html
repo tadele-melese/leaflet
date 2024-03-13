@@ -1,10 +1,48 @@
-// Custom icon
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Leaflet Map</title>
+    <!-- Include Leaflet CSS -->
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.7.1/dist/leaflet.css" />
+    <!-- Define styles for the map container -->
+    <style>
+        #map { /* Specify the ID of your map container */
+            height: 90vh;
+            width: 100%;
+        }
+    </style>
+</head>
+<body>
+    <!-- Create a div for the map container -->
+    <div id="map"></div>
+
+</body>
+</html>
+        <!-- Include Leaflet JavaScript -->
+<script src="https://unpkg.com/leaflet@1.7.1/dist/leaflet.js"></script>
+    
+        <!-- Include your own JavaScript file for Leaflet map initialization and customization -->
+<script>
+            var map = L.map('map').setView([11.7, 37.5], 13);
+    
+        L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png', {
+            attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
+        }).addTo(map);
+        // Custom icon
 var customIcon = L.icon({
-    iconUrl: 'path/to/icon.png',
+    iconUrl: 'D:/WebGIS/leaflet/Img/search.png',
     iconSize: [38, 38], // size of the icon
     iconAnchor: [19, 38], // point of the icon which will correspond to marker's location
     popupAnchor: [0, -38] // point from which the popup should open relative to the iconAnchor
 });
 
 // Place a marker with custom icon
-var marker = L.marker([51.5, -0.09], { icon: customIcon }).addTo(map);
+var marker = L.marker([11.7, 37.5], { icon: customIcon }).addTo(map);
+
+
+</script>
+
+

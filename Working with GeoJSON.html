@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Leaflet</title>
+    <!-- leaflet css -->
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css">
+    <style>
+        body{
+            margin: 0;
+            padding: 0;
+        }
+        #map{
+            height: 100vh;
+            width: 100%;
+        }
+    </style>
+</head>
+<body>
+   <div id="map"></div>
+</body>
+</html>
+<!-- add leaflet js file -->
+<script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+<script src="Leaflet/Data/Circle.js"></script>
+<script src="Leaflet/Data/Line.js"></script> 
+<script src="Leaflet/Data/Point.js"></script>
+<script src="Leaflet/Data/Polygon.js"></script>
+<script src="Leaflet/Data/Rectangle.js"></script>
+<script>
+    // map initialization
+    var map = L.map('map').setView([11.8, 37.2], 10);
+    // osm layer
+    var osm =L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png', {
+        attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
+    });
+    osm.addTo(map);
+    // Watercolor
+    var Watercolor = L.tileLayer('https://tiles.stadiamaps.com/tiles/stamen_watercolor/{z}/{x}/{y}.{ext}', {
+	minZoom: 1,
+	maxZoom: 16,
+	attribution: '&copy; <a href="https://www.stadiamaps.com/" target="_blank">Stadia Maps</a> &copy; <a href="https://www.stamen.com/" target="_blank">Stamen Design</a> &copy; <a href="https://openmaptiles.org/" target="_blank">OpenMapTiles</a> &copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors',
+	ext: 'jpg'
+   });
+   Watercolor.addTo(map) 
+    //  Esri world satellite imagery
+    var Esri_WorldImagery = L.tileLayer('https://server.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/tile/{z}/{y}/{x}', {
+	attribution: 'Tiles &copy; Esri &mdash; Source: Esri, i-cubed, USDA, USGS, AEX, GeoEye, Getmapping, Aerogrid, IGN, IGP, UPR-EGP, and the GIS User Community'
+    });  
+    Esri_WorldImagery.addTo(map) 
+    //Googlee street
+    googleStreets = L.tileLayer('http://{s}.google.com/vt?lyrs=m&x={x}&y={y}&z={z}',{
+    maxZoom: 20,
+    subdomains:['mt0','mt1','mt2','mt3']
+});    
+    googleStreets.addTo(map)
+    // Google Satellite
+    googleSat = L.tileLayer('http://{s}.google.com/vt?lyrs=s&x={x}&y={y}&z={z}',{
+    maxZoom: 20,
+    subdomains:['mt0','mt1','mt2','mt3']
+});
+    googleSat.addTo(map)
+    // Add marker
+    var firstMarker =L.marker([11.8, 37.2],{draggable:true}).addTo(map);
+    var popup =firstMarker.bindPopup("Near to Zege Monastery forest" + firstMarker.getLatLng())
+    var second =L.marker([11.8, 37.4]).addTo(map);
+    var popup = second.bindPopup('In the middle of Lake Tana ' + second.getLatLng()).openPopup()
+    popup.addTo(map)
+    // To Geojson
+    console.log(second.toGeoJSON())
+
+// Leaflet layer controller
+var baseMaps = {
+    "OpenStreetMap": osm,
+    "Watercolor":Watercolor,
+    "Esri_WorldImageryT": Esri_WorldImagery,
+    "googleStreets":googleStreets,
+    "googleSat":googleSat,
+
+
+};
+
+var overlayMaps = {
+    "marker": firstMarker
+};
+var layerControl = L.control.layers(baseMaps, overlayMaps).addTo(map);
+
+// Add GeoJson data
+    L.geoJSON(pointJson).addTo(map)
+    L.geoJSON(lineJson).addTo(map)
+    L.geoJSON(CircleJson).addTo(map)
+    L.geoJSON(polygonJson).addTo(map)
+    L.geoJSON(rectangleJson,{
+        onEachFeature: function(feature, layer){
+            layer.bindPopup(feature.properties.name)
+        }
+    }).addTo(map)
+// Leaflet events
+map.on('mouseover', function(e){
+    console.log('lat: ' + e.latlng.lat, 'lng: ' + e.latlng.lng)
+}
+)
+
+</script>
