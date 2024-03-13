@@ -11,7 +11,7 @@ Compatibility: Leaflet works seamlessly across all major desktop and mobile plat
 Community: With a vibrant community of developers and contributors, Leaflet is constantly evolving with new features, enhancements, and plugins.
 
 ## Documentation:
-For detailed documentation and examples, visit the Leaflet website.
+For detailed documentation and examples, visit the [Leaflet website](https://leafletjs.com/).
 
 ## License:
-Leaflet is distributed under the [BSD](https://opensource.org/license/bsd-2-clause)-2-Clause License.
+Leaflet is distributed under the [BSD-2-Clause License](https://opensource.org/license/bsd-2-clause).
