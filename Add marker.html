@@ -73,7 +73,10 @@ var overlayMaps = {
     "googleSat":googleSat,
 };
 var layerControl = L.control.layers( overlayMaps).addTo(map);
-var firstMarker =L.marker([11.8, 37.2],{draggable:true, }).addTo(map);
+
+		// Place a marker on the map
+    var marker = L.marker([11.6, 37.5]).addTo(map);
+    var firstMarker =L.marker([11.8, 37.2],{draggable:true, }).addTo(map);
     var popup =firstMarker.bindPopup("Near to Zege Monastery forest" + firstMarker.getLatLng())
     var second =L.marker([11.8, 37.4]).addTo(map);
     var popup = second.bindPopup('In the middle of Lake Tana ' + second.getLatLng()).openPopup()
